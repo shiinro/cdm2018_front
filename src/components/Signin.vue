@@ -46,7 +46,9 @@ export default {
   },
   methods: {
     signin () {
-      this.$store.dispatch('signin', {name: this.pseudo, mail: this.mail, password: this.password})
+      this.$store.dispatch('signin', {name: this.pseudo, mail: this.mail, password: this.password}).then(() => {
+        this.$router.push(this.$route.query.redirect || '/accueil')
+      })
     }
   }
 }

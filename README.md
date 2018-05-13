@@ -1,6 +1,6 @@
 # cdm2018
 
-> A Vue.js project
+> A Vue.js project to prognosticate on world cup football 2018
 
 ## Build Setup
 

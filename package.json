@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "form-data": "^2.3.2",
+    "moment": "^2.22.1",
     "vue": "^2.5.2",
     "vue-axios": "^2.1.1",
     "vue-resource": "^1.5.0",

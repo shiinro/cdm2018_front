@@ -12,7 +12,7 @@
             </div>
             <div class="two wide column equipe">{{match.equipe1.nom}}</div>
             <div class="two wide column score-match"><input type="text" class="disabled field" :value="match.scoreEquipe1 || 0"/></div>
-            <div class="two wide column inter"> - </div>
+            <div class="two wide column inter"><img src="../assets/versus.png" alt="" class="ui image"/></div>
             <div class="two wide column score-match"><input type="text" class="disabled field" :value="match.scoreEquipe2 || 0"/></div>
             <div class="two wide column equipe">{{match.equipe2.nom}}</div>
             <div class="ui image two wide column">

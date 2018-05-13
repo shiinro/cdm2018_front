@@ -130,8 +130,11 @@ export default new Vuex.Store({
         'mail': mail,
         'password': password
       }
-      let response = await post('http://127.0.0.1:8080/signin', body)
-      if (response === 'KO') {
+      let user = await post('http://127.0.0.1:8080/signin', body)
+      console.log(user)
+      if (user.token) {
+        context.commit('AUTHENTICATED', {isAuthenticated: true, user: user})
+        localStorage.setItem('user-token', user.token)
       }
     },
     logout: function (context) {
@@ -145,11 +148,19 @@ export default new Vuex.Store({
     getPronostics: async function (context, userId) {
       if (userId) {
         let pronostics = await get('http://127.0.0.1:8080/pronostic/' + userId)
+        console.log(pronostics)
         context.commit('ADD_PRONOSTICS', {pronostics: pronostics})
       }
     },
     updateProno: function (context, {id, type, value}) {
       context.commit('UPDATE_PRONO', {id: id, type: type, value: value})
+    },
+    setPronos: async function ({commit, state}) {
+      let body = {
+        'user': state.user,
+        'pronostics': state.pronostics
+      }
+      await post('http://127.0.0.1:8080/pronostic', body)
     }
   }
 })
