@@ -2,16 +2,18 @@
   <div class="pusher">
     <navigation></navigation>
     <div class="ui container">
-      <table class="ui celled table selectable center aligned">
+      <table class="ui celled table center aligned">
         <thead>
           <tr>
             <th class="four wide">Classement</th>
-            <th>User</th>
+            <th>Nom</th>
+            <th>Nombre de score exact</th>
+            <th>Nombre d'équipe gagnante</th>
             <th>Points</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(user, index) in classement" v-bind:key="user.id">
+          <tr v-for="(user, index) in classement" v-bind:key="user.nomUser" :class="userName === user.nomUser ? 'ui inverted positive' : ''">
             <td>
               <h4 class="ui image tiny header">
                 <img src="../assets/classement_1.png" alt="" class="ui mini rounded image" v-if="(index+1) == 1">
@@ -24,11 +26,17 @@
             </td>
             <td>
               <div class="content">
-                {{user[1]}}
+                {{user.nomUser}}
               </div>
             </td>
             <td>
-              {{user[2]}}
+              {{user.nbScoreExact}}
+            </td>
+            <td>
+              {{user.nbEquipeGagnante}}
+            </td>
+            <td>
+              {{user.points}}
             </td>
           </tr>
         </tbody>
@@ -42,6 +50,11 @@ import Navigation from './Navigation.vue'
 import {mapGetters} from 'vuex'
 
 export default {
+  data () {
+    return {
+      userName: this.$store.getters.user.username
+    }
+  },
   components: {
     Navigation
   },
